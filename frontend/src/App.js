@@ -1,5 +1,12 @@
 import React from 'react';
 import './App.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import ifpb from './img/IFCZ.png'
+import ifBrand from './img/IFBrand.png'
 
 
 class App extends React.Component {
@@ -159,62 +166,87 @@ class App extends React.Component {
     var tasks = this.state.todoList
     var self = this
     return(
-        <div className="container">
-          <div className='textHeader'>
-            <h1>IF Book Laboratory</h1>
-          </div>
-          
+      
+      <><Navbar expand="lg" className="bg-body-tertiary" style={{zIndex: 1}}>
+        <Container>
+          <Navbar.Brand href="#home"><img style={{height: 40}} src={ifBrand}/>IF Book Laboratory</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#link">Sign In</Nav.Link>
+              <NavDropdown title="Categories" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">ADS</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">
+                  Eng Civil
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Eng Automação</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">
+                  Lic em Matematica
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar><div className="container">
+      <Container style={{position: 'relative', top:1 , left: 325}}>
+            <img className='' src={ifpb}/>
+      </Container>
           <div id="task-container">
-              <div  id="form-wrapper">
-                 <form onSubmit={this.handleSubmit}  id="form">
-                    <div className="flex-wrapper">
-                        <div style={{flex: 6}}>
-                            <input onChange={this.handleChange} className="form-control" id="title" value={this.state.activeItem.title} type="text" name="title" placeholder="inform a lab you want to book" />
-                         </div>
-
-                         <div style={{flex: 1}}>
-                            <input id="submit" className="btn btn-warning rounded-right" type="submit" name="Add" value={"Book"}/>
-                          </div>
-                      </div>
-                </form>
-             
-              </div>
-
-              <div  id="list-wrapper">         
-                    {tasks.map(function(task, index){
-                      return(
-                          <div key={index} className="task-wrapper flex-wrapper">
-
-                            <div onClick={() => self.strikeUnstrike(task)} style={{flex:7}}>
-
-                                {task.completed == false ? (
-                                    <span>{task.title}</span>
-
-                                  ) : (
-
-                                    <strike>{task.title}</strike>
-                                  )}
-  
-                            </div>
-
-                            <div style={{flex:1}}>
-                                <button onClick={() => self.startEdit(task)} className="btn btn-sm btn-outline-info">Edit</button>
-                            </div>
-
-                            <div style={{flex:1}}>
-                                <button onClick={() => self.deleteItem(task)} className="btn btn-sm btn-outline-danger delete"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-
-                          </div>
-                        )
-                    })}
-              </div>
-          </div>
           
-        </div>
+            <div id="form-wrapper">
+              <form onSubmit={this.handleSubmit} id="form">
+                <div className="flex-wrapper">
+                  <div style={{ flex: 6 }}>
+                    <input onChange={this.handleChange} className="form-control" id="title" value={this.state.activeItem.title} type="text" name="title" placeholder="inform a lab you want to book" />
+                  </div>
+
+                  <div style={{ flex: 1 }}>
+                    <input id="submit" className="btn btn-warning rounded-right" type="submit" name="Add" value={"Book"} />
+                  </div>
+                </div>
+              </form>
+
+            </div>
+
+            <div id="list-wrapper">
+              {tasks.map(function (task, index) {
+                return (
+                  <div key={index} className="task-wrapper flex-wrapper">
+
+                    <div onClick={() => self.strikeUnstrike(task)} style={{ flex: 7 }}>
+
+                      {task.completed == false ? (
+                        <span>{task.title}</span>
+
+                      ) : (
+
+                        <strike>{task.title}</strike>
+                      )}
+
+                    </div>
+
+                    <div style={{ flex: 1 }}>
+                      <button onClick={() => self.startEdit(task)} className="btn btn-sm btn-outline-info">Edit</button>
+                    </div>
+
+                    <div style={{ flex: 1 }}>
+                      <button onClick={() => self.deleteItem(task)} className="btn btn-sm btn-outline-danger delete"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+        </div></>
       )
   }
 }
+
+
 
 
 
