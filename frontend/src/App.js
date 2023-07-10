@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,8 +8,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import ifpb from './img/IFCZ.png'
 import ifBrand from './img/IFBrand.png'
 
+import SignUpScreen from './components/UserRegister';
 
 class App extends React.Component {
+
+
+
   constructor(props){
     super(props);
       this.state = {
@@ -19,9 +23,20 @@ class App extends React.Component {
           title:'',
           completed:false,
         },
+
         editing:false,
+        mostrarCadastro: false,
+        mostrarLogin: true,
+        mostrarApp: false,
       }
+
+      
+    
+
       this.fetchTasks = this.fetchTasks.bind(this)
+
+      
+
       this.handleChange = this.handleChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)
       this.getCookie = this.getCookie.bind(this)
@@ -64,6 +79,16 @@ class App extends React.Component {
       )
   }
 
+  handleSignIn = () => {
+    this.setState({ mostrarCadastro: true });
+    document.getElementById('App').style = 'display:none;'
+  };
+
+  handleApp = () => {
+    this.setState({ mostrarCadastro: false });
+    document.getElementById('App').style = 'display:block;'
+  };
+
   handleChange(e){
     var name = e.target.name
     var value = e.target.value
@@ -86,7 +111,7 @@ class App extends React.Component {
 
     var url = 'http://127.0.0.1:8000/api/task-create/'
 
-    if(this.state.editing == true){
+    if(this.state.editing === true){
       url = `http://127.0.0.1:8000/api/task-update/${ this.state.activeItem.id}/`
       this.setState({
         editing:false
@@ -161,20 +186,23 @@ class App extends React.Component {
     console.log('TASK:', task.completed)
   }
 
+  
 
   render(){
     var tasks = this.state.todoList
+    const { mostrarCadastro } = this.state;
     var self = this
     return(
       
-      <><Navbar expand="lg" className="bg-body-tertiary" style={{zIndex: 1}}>
+      <>
+      <Navbar expand="lg" className="bg-body-tertiary" style={{zIndex: 1}}>
         <Container>
           <Navbar.Brand href="#home"><img style={{height: 40}} src={ifBrand}/>IF Book Laboratory</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Sign In</Nav.Link>
+              <Nav.Link active onClick={this.handleApp}>Home</Nav.Link>
+              <Nav.Link onClick={this.handleSignIn}>Sign In</Nav.Link>
               <NavDropdown title="Categories" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">ADS</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -189,59 +217,58 @@ class App extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Container>
-      </Navbar><div className="container">
-      <Container style={{position: 'relative', top:1 , left: 325}}>
-            <img className='' src={ifpb}/>
-      </Container>
-          <div id="task-container">
-          
-            <div id="form-wrapper">
-              <form onSubmit={this.handleSubmit} id="form">
-                <div className="flex-wrapper">
-                  <div style={{ flex: 6 }}>
-                    <input onChange={this.handleChange} className="form-control" id="title" value={this.state.activeItem.title} type="text" name="title" placeholder="inform a lab you want to book" />
-                  </div>
-
-                  <div style={{ flex: 1 }}>
-                    <input id="submit" className="btn btn-warning rounded-right" type="submit" name="Add" value={"Book"} />
-                  </div>
-                </div>
-              </form>
-
-            </div>
-
-            <div id="list-wrapper">
-              {tasks.map(function (task, index) {
-                return (
-                  <div key={index} className="task-wrapper flex-wrapper">
-
-                    <div onClick={() => self.strikeUnstrike(task)} style={{ flex: 7 }}>
-
-                      {task.completed == false ? (
-                        <span>{task.title}</span>
-
-                      ) : (
-
-                        <strike>{task.title}</strike>
-                      )}
-
+      </Navbar>
+      <div className="container" id='App' style={{display:'none'}}>
+        <img style={{position: 'relative', top:1 , left: 325, marginTop:10}} className='' src={ifpb}/>
+            <div id="task-container">
+            
+              <div id="form-wrapper">
+                <form onSubmit={this.handleSubmit} id="form">
+                  <div className="flex-wrapper">
+                    <div style={{ flex: 6 }}>
+                      <input onChange={this.handleChange} className="form-control" id="title" value={this.state.activeItem.title} type="text" name="title" placeholder="inform a lab you want to book" />
                     </div>
 
                     <div style={{ flex: 1 }}>
-                      <button onClick={() => self.startEdit(task)} className="btn btn-sm btn-outline-info">Edit</button>
+                      <input id="submit" className="btn btn-warning rounded-right" type="submit" name="Add" value={"Book"} />
                     </div>
-
-                    <div style={{ flex: 1 }}>
-                      <button onClick={() => self.deleteItem(task)} className="btn btn-sm btn-outline-danger delete"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-
                   </div>
-                );
-              })}
-            </div>
-          </div>
+                </form>
 
-        </div></>
+              </div>
+
+              <div id="list-wrapper">
+                {tasks.map(function (task, index) {
+                  return (
+                    <div key={index} className="task-wrapper flex-wrapper">
+
+                      <div onClick={() => self.strikeUnstrike(task)} style={{ flex: 7 }}>
+
+                        {task.completed == false ? (
+                          <span>{task.title}</span>
+
+                        ) : (
+
+                          <strike>{task.title}</strike>
+                        )}
+
+                      </div>
+
+                      <div style={{ flex: 1 }}>
+                        <button onClick={() => self.startEdit(task)} className="btn btn-sm btn-outline-info">Edit</button>
+                      </div>
+
+                      <div style={{ flex: 1 }}>
+                        <button onClick={() => self.deleteItem(task)} className="btn btn-sm btn-outline-danger delete"><i class="fa-solid fa-trash"></i></button>
+                      </div>
+
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+      </div></>
       )
   }
 }
