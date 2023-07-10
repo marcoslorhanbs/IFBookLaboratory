@@ -16,6 +16,21 @@
 
 <h2>Get Started</h2>
 
+// Para quem deseja contribuir com o desenvolvimento recomendo criar um ambiente virtual
+
+```python
+pip install virtualenv
+py -m venv venv
+```
+
+
+// Para ativar o ambiente virtual
+
+```python
+source venv/Scripts/activate (windows)
+source venv/Bin/activate (linux/mac OS)
+```
+
 
 ```python
 pip install -r requirements.txt
