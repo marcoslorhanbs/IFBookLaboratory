@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
+from django.contrib.auth import get_user_model, login, logout, authenticate
 
-#----- Django Auth
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+
+from django.contrib.auth.models import User, Group
+from rest_framework.authentication import SessionAuthentication
+from rest_framework import permissions, status
+
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -48,31 +51,44 @@ def taskCreate(request):
 
 	return Response(serializer.data)
 
+
 @api_view(['POST'])
 def createUser(request):
 	serializer = UserSerializer(data=request.data)
+	print(serializer)
 
 	if serializer.is_valid():
 		serializer.save()
+  
 
 	return HttpResponseRedirect('../')
 
 
 @api_view(['POST'])
 def authUser(request):
-	serializer = AuthSerializer(data=request.data)
-	
-	serializer.is_valid(raise_exception=True)
+    permission_classes = (permissions.AllowAny, )
+    autentication_classes = (SessionAuthentication, )
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        auth = authenticate(username=username, password=password)
+        if auth is not None:
+            login(request, auth)
+            return HttpResponse("../")
+        '''
+        serializer = AuthSerializer(data=data)
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.check_user(data)
+            login(request, user)
+        '''
+    
+        
+    
 	
 	#username = serializer.validated_data['username']
 	#password = serializer.validated_data['password']
  
-	auth = authenticate(serializer)
- 
-	if auth is not None:
-		login(request, auth)
-		return Response(data=serializer.data)
-	else: return HttpResponse('Falha na autenticação') 
+	
 
 @api_view(['POST'])
 def taskUpdate(request, pk):

@@ -218,7 +218,7 @@ class App extends React.Component {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="container" id='App' style={{display:'none'}}>
+      <div className="container" id='App' style={{display:'block'}}>
         <img style={{position: 'relative', top:1 , left: 325, marginTop:10}} className='' src={ifpb}/>
             <div id="task-container">
             

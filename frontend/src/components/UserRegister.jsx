@@ -61,6 +61,10 @@ function SignUp() {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicUsername">
+            <Form.Control name="groups" type="hidden" defaultValue='Docentes' />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control name="username" type="text" placeholder="Username" />
           </Form.Group>
