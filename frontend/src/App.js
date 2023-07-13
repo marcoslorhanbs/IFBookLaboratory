@@ -216,7 +216,7 @@ class App extends React.Component {
       <>
       <Navbar expand="lg" className="bg-body-tertiary" style={{zIndex: 1}}>
         <Container>
-          <Navbar.Brand href="#home"><img style={{height: 40}} src={ifBrand}/>IF Book Laboratory</Navbar.Brand>
+          <Navbar.Brand href="#home"><img  style={{height: 40}} src={ifBrand}/>IF Book Laboratory</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -238,7 +238,7 @@ class App extends React.Component {
         </Container>
       </Navbar>
       <div className="container" id='App' style={{display:'block'}}>
-        <img style={{position: 'relative', top:1 , left: 325, marginTop:10}} className='' src={ifpb}/>
+        <img style={{position: 'relative', top:1 , left: 325, marginTop:10}} className='ifLogoMobile' src={ifpb}/>
             <div id="task-container">
             
               <div id="form-wrapper">

@@ -21,6 +21,16 @@ h1, h2, h3, h4, h5, p, span, strike{
 
 }
 
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .ifLogoMobile
+  {
+    position: relative;
+    left: 0 !important;
+    height: 80px
+  }
+}
+
 #task-container{
   max-width:600px;
   margin:0 auto;

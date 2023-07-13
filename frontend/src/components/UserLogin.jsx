@@ -4,7 +4,8 @@ import { Form, Button } from 'react-bootstrap';
 import {Container} from 'react-bootstrap';
 import App from '../App';
 import SignUp from './UserRegister';
-
+import ifpb from '../img/IFCZ.png'
+import ifBrand from '../img/IFBrand.png'
 
 
 
@@ -56,7 +57,12 @@ function SignIn() {
       {showApp && <App />}
       {showRegister && <SignUp />}
       {showLogin && 
+
+        <div>
+       
+
         <Container className='bg-light rounded box-register'>
+
 
           <Form onSubmit={enviarRequisicao} method='POST' action='http://127.0.0.1:8000/api/auth-user/'>
           <Form.Group className="mb-3" controlId="formBasicUsername">
@@ -80,6 +86,8 @@ function SignIn() {
         </Form>
         <p>Não Possui uma Conta? <span onClick={handleRegister} className='btn btn-primary btn-sm'>Clique Aqui</span> </p>
       </Container>
+        </div>
+       
       }
       
     </>

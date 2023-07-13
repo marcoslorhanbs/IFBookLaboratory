@@ -4,6 +4,8 @@ import { Form, Button } from 'react-bootstrap';
 import {Container} from 'react-bootstrap';
 import App from '../App';
 import AuthLogin from './UserLogin';
+import ifpb from '../img/IFCZ.png'
+import ifBrand from '../img/IFBrand.png'
 
 
 
@@ -54,7 +56,11 @@ function SignUp() {
       {showApp && <App />}
       {showLogin && <AuthLogin />}
       {showRegister && 
+
+        <div>
+
         <Container className='bg-light rounded box-register'>
+
           <Form onSubmit={enviarRequisicao} method='POST' action='http://127.0.0.1:8000/api/create-user/'>
           <Form.Group className="mb-3" controlId="formBasicUsername">
             <Form.Control name="_csrf" type="hidden" defaultValue={csrfToken} />
@@ -88,6 +94,8 @@ function SignUp() {
         </Form>
         <p>Já Possui uma Conta? <br/> <span onClick={handleLogin} className='btn btn-primary btn-sm'>Clique Aqui</span> </p>
       </Container>
+        </div>
+       
       }
       
     </>
