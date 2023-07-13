@@ -54,7 +54,7 @@ function SignUp() {
       {showApp && <App />}
       {showLogin && <AuthLogin />}
       {showRegister && 
-        <Container className='bg-light rounded'>
+        <Container className='bg-light rounded box-register'>
           <Form onSubmit={enviarRequisicao} method='POST' action='http://127.0.0.1:8000/api/create-user/'>
           <Form.Group className="mb-3" controlId="formBasicUsername">
             <Form.Control name="_csrf" type="hidden" defaultValue={csrfToken} />
@@ -82,7 +82,7 @@ function SignUp() {
             Submit
           </Button>
         </Form>
-        <p>Já Possui uma Conta? <span onClick={handleLogin} className='btn btn-primary btn-sm'>Clique Aqui</span> </p>
+        <p>Já Possui uma Conta? <br/> <span onClick={handleLogin} className='btn btn-primary btn-sm'>Clique Aqui</span> </p>
       </Container>
       }
       
