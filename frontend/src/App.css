@@ -13,7 +13,7 @@
 }
 body{
   background: var(--blue);
-  /**/background: linear-gradient(90deg, var(--mdBlue) 0% 43%, var(--lightBlue) 100%);
+  background: linear-gradient(90deg, var(--mdBlue) 0% 30%, var(--lightBlue) 100%);
 }
 
 h1, h2, h3, h4, h5, p, span, strike{
@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, p, span, strike{
   border-radius: 0;
   margin-left: -5px;
   height: 38px;
-  border:0;
+  border: 0;
   color: var(--white);
 }
 
@@ -83,4 +83,10 @@ h1, h2, h3, h4, h5, p, span, strike{
 .textHeader
 {
   text-align: center;
+}
+
+.box-register {
+  padding: 50px;
+  margin-top: 100px;
+  
 }

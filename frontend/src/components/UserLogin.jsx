@@ -53,11 +53,17 @@ function SignIn() {
   const csrfToken = window.csrfToken; // Certifique-se de que csrfToken esteja definido
   return (
     <>
+
       {showApp && <App />}
       {showRegister && <SignUp />}
       {showLogin && 
+
         <div>
-        <Container className='bg-light rounded'>
+       
+
+        <Container className='bg-light rounded box-register'>
+
+
           <Form onSubmit={enviarRequisicao} method='POST' action='http://127.0.0.1:8000/api/auth-user/'>
           <Form.Group className="mb-3" controlId="formBasicUsername">
             <Form.Control name="_csrf" type="hidden" defaultValue={csrfToken} />
