@@ -17,6 +17,7 @@ class Laboratory(models.Model):
   Block = models.CharField(max_length=15)
   Capacity = models.CharField(max_length=50)
   
+  
   def __str__(self):
     return self.LabName
 
@@ -31,3 +32,8 @@ class CollegeHour(models.Model):
   
   def __str__(self):
     return self.hour
+
+
+class Institute(models.Model):
+  name = models.CharField(max_length=120)
+  logo = models.ImageField(upload_to='media/uploads', blank=True)
