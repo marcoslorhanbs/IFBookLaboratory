@@ -14,8 +14,7 @@ class TaskSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'password', 'email', 'groups']
-    Meta.model.groups.default = 'Docentes'
+        fields = ['username', 'password', 'email']
         
         
     

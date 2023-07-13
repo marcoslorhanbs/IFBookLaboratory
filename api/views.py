@@ -75,13 +75,7 @@ def authUser(request):
         if auth is not None:
             login(request, auth)
             return HttpResponse("../")
-        '''
-        serializer = AuthSerializer(data=data)
-        if serializer.is_valid(raise_exception=True):
-            user = serializer.check_user(data)
-            login(request, user)
-        '''
-    
+    return HttpResponse("../")
         
     
 	

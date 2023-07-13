@@ -44,7 +44,7 @@ function SignIn() {
         setShowApp(true)
       })
       .catch(error => {
-        alert("Houve um erro")
+        alert("Algo deu Errado!")
       });
   }
 
