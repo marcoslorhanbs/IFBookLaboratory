@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Booking
+from .models import Booking, Laboratory
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User, Group
 UserModel = get_user_model()
@@ -16,9 +16,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username', 'password', 'email']
         
-        
-    
-    
+class LabSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Laboratory
+        fields = ['LabName',]
 
         
 class AuthSerializer(serializers.Serializer):   

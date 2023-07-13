@@ -7,17 +7,24 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import ifpb from './img/IFCZ.png'
 import ifBrand from './img/IFBrand.png'
+import InputGroup from 'react-bootstrap/InputGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+
+
 
 import SignUpScreen from './components/UserRegister';
 
 class App extends React.Component {
 
-
+  
 
   constructor(props){
     super(props);
       this.state = {
         todoList:[],
+        labList: [],
         activeItem:{
           id:null, 
           title:'',
@@ -75,6 +82,18 @@ class App extends React.Component {
     .then(data => 
       this.setState({
         todoList:data
+      })
+      )
+  }
+
+  fetchLabs(){
+    console.log('Fetching...')
+
+    fetch('http://127.0.0.1:8000/api/lab-list/')
+    .then(response => response.json())
+    .then(data => 
+      this.setState({
+        labList:data
       })
       )
   }
@@ -226,7 +245,8 @@ class App extends React.Component {
                 <form onSubmit={this.handleSubmit} id="form">
                   <div className="flex-wrapper">
                     <div style={{ flex: 6 }}>
-                      <input onChange={this.handleChange} className="form-control" id="title" value={this.state.activeItem.title} type="text" name="title" placeholder="inform a lab you want to book" />
+                    <input onChange={this.handleChange} className="form-control" id="title" value={this.state.activeItem.title} type="text" name="title" placeholder="inform a lab you want to book" />
+                      
                     </div>
 
                     <div style={{ flex: 1 }}>
