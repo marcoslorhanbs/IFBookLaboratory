@@ -58,7 +58,7 @@ function SignUp() {
       {showRegister && 
 
         <div>
-
+        <img style={{position: 'relative', top:1 , left: 325, marginTop:10}} className='ifLogoMobile' src={ifpb}/>
         <Container className='bg-light rounded box-register'>
 
           <Form onSubmit={enviarRequisicao} method='POST' action='http://127.0.0.1:8000/api/create-user/'>

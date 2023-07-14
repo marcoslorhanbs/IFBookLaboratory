@@ -58,8 +58,8 @@ function SignIn() {
       {showRegister && <SignUp />}
       {showLogin && 
 
-        <div style={{width: '40vw !important'}}>
-       
+      <div style={{width: '40vw !important'}}>
+      <img style={{position: 'relative', top:1 , left: 325, marginTop:10}} className='ifLogoMobile' src={ifpb}/>
 
        <Container className='bg-light rounded box-register' >
 
