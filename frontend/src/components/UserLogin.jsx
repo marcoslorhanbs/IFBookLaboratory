@@ -58,35 +58,36 @@ function SignIn() {
       {showRegister && <SignUp />}
       {showLogin && 
 
-        <div>
+        <div style={{width: '40vw !important'}}>
        
 
-        <Container className='bg-light rounded box-register'>
+       <Container className='bg-light rounded box-register' >
 
 
-          <Form onSubmit={enviarRequisicao} method='POST' action='http://127.0.0.1:8000/api/auth-user/'>
-          <Form.Group className="mb-3" controlId="formBasicUsername">
-            <Form.Control name="_csrf" type="hidden" defaultValue={csrfToken} />
-          </Form.Group>
+         <Form onSubmit={enviarRequisicao} method='POST' action='http://127.0.0.1:8000/api/auth-user/'>
+         <Form.Group className="mb-3" controlId="formBasicUsername">
+           <Form.Control name="_csrf" type="hidden" defaultValue={csrfToken} />
+         </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control name="username" type="text" placeholder="Username" />
-          </Form.Group>
+         <Form.Group className="mb-3" controlId="formBasicUsername">
+           <Form.Label>Username</Form.Label>
+           <Form.Control name="username" type="text" placeholder="Username" />
+         </Form.Group>
 
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control name="password" type="password" placeholder="Password" />
-          </Form.Group>
+         <Form.Group className="mb-3" controlId="formBasicPassword">
+           <Form.Label>Password</Form.Label>
+           <Form.Control name="password" type="password" placeholder="Password" />
+         </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-        <p>Não Possui uma Conta? <span onClick={handleRegister} className='btn btn-primary btn-sm'>Clique Aqui</span> </p>
-      </Container>
-        </div>
+         <Button variant="primary" type="submit">
+           Submit
+         </Button>
+       </Form>
+       <p>Não Possui uma Conta? <span onClick={handleRegister} className='btn btn-primary btn-sm'>Clique Aqui</span> </p>
+     </Container>
+       </div>
+      
        
       }
       
